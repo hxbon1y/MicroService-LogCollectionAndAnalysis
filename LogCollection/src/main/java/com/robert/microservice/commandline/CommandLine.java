@@ -32,7 +32,12 @@ public class CommandLine {
     }
 
     private void parse(String[] args){
-
+        
+        if(args.length < 4){
+            System.out.println("have no enough parameters");
+            toolUsage();
+            System.exit(0);
+        }
 
         for(int i = 0;i < args.length; i++)
         {
@@ -80,6 +85,7 @@ public class CommandLine {
                     {
                         System.out.println("Unknown parameter \"" + valueOfParameter + "\"");
                         toolUsage();
+                        System.exit(0);
                     }
 
             }
