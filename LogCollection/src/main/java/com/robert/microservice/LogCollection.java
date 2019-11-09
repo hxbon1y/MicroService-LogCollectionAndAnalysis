@@ -52,9 +52,9 @@ public class LogCollection {
                 CommandLineLightClone commandLineLightClone = new CommandLineLightClone(commandLine, date);
                 StringBuilder sb = new StringBuilder();
                 for(String time : times){
-                    sb.append("\"");
+//                    sb.append("\"");
                     sb.append(time);
-                    sb.append("\" | ");
+                    sb.append("\\|");
                 }
                 commandLineLightClone.setValueOfSearchStr(sb.substring(0,sb.length() - 3));
                 System.out.println("commandLineLightClone.getValueOfSearchStr() = " + commandLineLightClone.getValueOfSearchStr());
@@ -223,6 +223,9 @@ public class LogCollection {
         System.out.println("logs.length = " + logs.length);
         for(String log : logs){
 //            System.out.println("log = " + log);
+            if(log.isEmpty()){
+                continue;
+            }
             String[] splitedLog = log.split(".log:|.zip:");
             String time;
             try {
@@ -337,7 +340,7 @@ public class LogCollection {
     private static StringBuilder constructCommand(CommandLine commandLine, String path,
                                                   Service service) {
         StringBuilder command = new StringBuilder();
-        command.append("grep ");
+        command.append("zgrep -G ");
         command.append("\"");
         command.append(commandLine.getValueOfSearchStr());
         command.append("\"");
@@ -380,7 +383,7 @@ public class LogCollection {
             List<String> paths = node.getPaths();
             for (String path : paths) {
                 StringBuilder command = constructCommand(commandLine, path, service);
-//                System.out.println("command = " + command);
+                System.out.println("command = " + command);
                 ChannelExec channelExec = Execute.getChannel(ip, commandLine.getValueOfUsername(), commandLine.getValueOfPwd());
                 result.append(Execute.execute(channelExec, command.toString()));
             }
