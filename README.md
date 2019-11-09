@@ -1,3 +1,4 @@
+cu
 # MicroService-LogCollectionAndAnalysis
 Log collection and analysis is not easy to software based on structure of micro services. Because a single function is splited as multiple sub functions, and a sub function is knowned as a service,  a service has mutiple instances generally when it was deployed and run on target machines.Just as distribution, the function is stronger and has better performance, but it is difficult to analyze the log if encounter some troubles on function. If the function is single, the log is easy to analyse, so if we collect the logs of micro services, sort it as time and output it into  a single file, analyze it like a  single softwore, it will be easy again.
 
@@ -6,9 +7,15 @@ Log collection and analysis is not easy to software based on structure of micro 
 
 Example:
 
-LogCollecttion -c \"d:\\logCollection\\logCollection.config\" -u xxx -p xxx -s \"2019-03-09\" " +
-                "-o \"d:\\logCollection\\log20190309.log\"
+LogCollecttion -c "d:\\logCollection\\logCollection.config" -u xxx -p xxx -s "2019-03-09" -o "d:\\logCollection\\log20190309.log\\"
 
+or
+                
+LogCollecttion -c "d:\\logCollection\\logCollection.config" -u xxx -p xxx -st "2019-03-10 12:23:34" -et "2019-03-11 12:23:35" -o "d:\\logCollection\\log20190309.log\\"
+
+or 
+
+LogCollecttion -c "d:\\logCollection\\logCollection.config" -u xxx -p xxx -st "2019-03-10 12:23:34" -cu -o "d:\\logCollection\\log20190309.log\\"
 
         -c     the path of config file
         -u     the username to have SSH access permission to target machine on which the service was deployed
