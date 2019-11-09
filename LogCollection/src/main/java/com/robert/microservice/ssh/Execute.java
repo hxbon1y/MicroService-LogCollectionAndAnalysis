@@ -73,7 +73,7 @@ public class Execute {
         try {
             while ((tmpStr = reader.readLine()) != null) {
                 try {
-                    result.append(new String(tmpStr.getBytes("gbk"), "UTF-8")).append("\n");
+                    result.append(new String(tmpStr.getBytes("UTF-8"), "UTF-8")).append("\n");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
